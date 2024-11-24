@@ -438,3 +438,26 @@ def menu_principal():
 
 if __name__ == "__main__":
     menu_principal()
+
+# LLAMADO A LA CARPETA FILTRO 
+
+from filtro.filtro import buscar_cancion_por_filtro
+
+def menu_principal():
+    while True:
+        print("\n===== SPOTIFY =====")
+        print("1. Buscar canciones por género o artista")
+        print("2. Salir")
+        opcion = input("Selecciona una opción: ")
+
+        if opcion == "1":
+            buscar_cancion_por_filtro()
+        elif opcion == "2":
+            print("Saliendo del programa.")
+            break
+        else:
+            print("Opción no válida. Intenta de nuevo.")
+
+if __name__ == "__main__":
+    menu_principal()
+####                                  #####
