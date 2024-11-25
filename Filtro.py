@@ -52,3 +52,38 @@ def buscar_cancion_por_filtro():
 
     cursor.close()
     conexion.close()
+
+# Nueva función para agregar una canción
+def agregar_cancion():
+    """
+    Permite al usuario agregar una nueva canción a la base de datos.
+    """
+    conexion = conectar_db()
+    if conexion is None:
+        print("No se pudo conectar a la base de datos.")
+        return
+
+    cursor = conexion.cursor()
+
+    print("\n===== Agregar Nueva Canción =====")
+    titulo = input("Introduce el título de la canción: ")
+    artista = input("Introduce el nombre del artista: ")
+    album = input("Introduce el álbum: ")
+    genero = input("Introduce el género musical: ")
+
+    try:
+        # Insertar la nueva canción en la base de datos
+        cursor.execute(
+            "INSERT INTO Canciones (titulo, artista, album, genero) VALUES (%s, %s, %s, %s)",
+            (titulo, artista, album, genero)
+        )
+        conexion.commit()  # Confirmar cambios en la base de datos
+        print("Canción agregada exitosamente.")
+    except mysql.connector.Error as err:
+        print(f"Error al agregar la canción: {err}")
+    finally:
+        cursor.close()
+        conexion.close()
+
+# Llamada de prueba para la nueva función
+# agregar_cancion()
